@@ -3,7 +3,8 @@ name: Backend CI/CD Pipeline
 on:
   push:
     branches: [master]
-
+    paths:
+      - 'backend/**'
 jobs:
   build-test-scan:
     name: CI - Build, Lint, Scan
