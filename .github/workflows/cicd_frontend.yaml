@@ -31,10 +31,18 @@ jobs:
       run: npm ci
       working-directory: frontend
 
+    - name: Fix vulnerabilities
+      run: npm audit fix 
+      working-directory: frontend
+
+    - name: Update Browserslist DB
+      run: npx update-browserslist-db@latest
+      working-directory: frontend
+
     - name: Lint code
       run: |
         npm install eslint --save-dev
-        npx eslint .
+        npx eslint src
       working-directory: frontend
 
     - name: Build React app
