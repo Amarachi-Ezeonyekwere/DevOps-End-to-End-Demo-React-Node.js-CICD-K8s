@@ -7,7 +7,7 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-# Use Nginx to serve the built app
+# Use Nginx to serve the built app for production
 FROM nginx:alpine
 COPY --from=build /app/build /usr/share/nginx/html
 EXPOSE 80

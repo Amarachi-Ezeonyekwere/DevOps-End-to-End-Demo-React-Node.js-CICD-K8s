@@ -4,7 +4,7 @@ FROM node:18-slim
 # Set working directory
 WORKDIR /app
 
-# Copy package files and install dependencies
+# Copy package files and install dependencies needed for backend
 COPY package*.json ./
 RUN npm install
 
