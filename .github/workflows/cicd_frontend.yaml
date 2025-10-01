@@ -61,6 +61,9 @@ jobs:
     - name: Build Docker image
       run: docker build -t amara3000/weather_frontend:${{ env.VERSION }} ./frontend
 
+    - name: Push image to Docker Hub
+      run: docker push amara3000/weather_frontend:${{ env.VERSION }}
+
     - name: Run security scan
       uses: aquasecurity/trivy-action@master
       with:
@@ -82,6 +85,9 @@ jobs:
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Pull versioned image
+      run: docker pull amara3000/weather_frontend:${{ needs.build-test-scan.outputs.version }}
 
     - name: Tag image
       run: |
