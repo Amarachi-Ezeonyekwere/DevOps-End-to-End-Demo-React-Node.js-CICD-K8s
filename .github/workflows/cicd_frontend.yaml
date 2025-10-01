@@ -3,14 +3,15 @@ name: Frontend CI/CD Pipeline
 on:
   push:
     branches: [ master ]
-    paths:
+    paths: 
       - 'frontend/**'
       - '.github/workflows/cicd_frontend.yaml'
   pull_request:
     branches: [ master ]
-     paths:
+    paths:
        - 'frontend/**'
        - '.github/workflows/cicd_frontend.yaml'
+  workflow_dispatch:
 
 jobs:
   build-test-scan:
