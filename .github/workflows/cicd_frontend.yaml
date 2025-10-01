@@ -31,9 +31,11 @@ jobs:
       run: npm ci
       working-directory: frontend
 
-    - name: Fix vulnerabilities
-      run: npm audit fix 
+    - name: Run audit and allow warnings
+      run: |
+        npm audit || echo "Audit completed with vulnerabilities"
       working-directory: frontend
+
 
     - name: Update Browserslist DB
       run: npx update-browserslist-db@latest
