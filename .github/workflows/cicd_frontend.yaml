@@ -7,8 +7,9 @@ on:
       - 'frontend/**'
   pull_request:
     branches: [ master ]
-    # paths:
-    #   - 'frontend/**'
+     paths:
+       - 'frontend/**'
+       - '.github/workflows/cicd_frontend.yaml'
 
 jobs:
   build-test-scan:
