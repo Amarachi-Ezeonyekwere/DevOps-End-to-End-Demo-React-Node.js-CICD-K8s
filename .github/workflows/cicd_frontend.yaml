@@ -5,6 +5,7 @@ on:
     branches: [ master ]
     paths:
       - 'frontend/**'
+      - '.github/workflows/cicd_frontend.yaml'
   pull_request:
     branches: [ master ]
      paths:
