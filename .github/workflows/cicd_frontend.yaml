@@ -2,9 +2,14 @@ name: Frontend CI/CD Pipeline
 
 on:
   push:
-    branches: [master]
+    branches: [ master ]
     paths:
       - 'frontend/**'
+    pull_request:
+    branches: [ master ]
+    paths:
+      - 'frontend/**'
+
 
 jobs:
   build-test-scan:

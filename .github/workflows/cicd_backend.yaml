@@ -5,6 +5,11 @@ on:
     branches: [master]
     paths:
       - 'backend/**'
+    pull_request:
+    branches: [ master ]
+    paths:
+      - 'backend/**'
+
 jobs:
   build-test-scan:
     name: CI - Build, Lint, Scan
