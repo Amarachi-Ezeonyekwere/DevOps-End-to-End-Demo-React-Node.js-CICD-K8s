@@ -7,8 +7,8 @@ on:
       - 'backend/**'
   pull_request:
     branches: [master]
-    paths:
-      - 'backend/**'
+    # paths:
+    #   - 'backend/**'
 
 jobs:
   build-test-scan:
