@@ -56,12 +56,12 @@ jobs:
         echo "VERSION=v1.0.0-$(date +'%Y.%m.%d')-${GITHUB_SHA}" >> $GITHUB_OUTPUT
 
     - name: Build Docker image
-      run: docker build -t amara3000/weather-backend:${{ env.VERSION }} ./backend
+      run: docker build -t amara3000/weather_backend:${{ env.VERSION }} ./backend
 
     - name: Run security scan
       uses: aquasecurity/trivy-action@master
       with:
-        image-ref: amara3000/weather-backend:${{ env.VERSION }}
+        image-ref: amara3000/weather_backend:${{ env.VERSION }}
         format: table
         severity: HIGH,CRITICAL
 
@@ -95,20 +95,20 @@ jobs:
       run: docker pull amara3000/weather_backend:${{ needs.build-test-scan.outputs.version }}
 
     - name: Tag image
-      run: docker tag amara3000/weather-backend:${{ needs.build-test-scan.outputs.version }} amara3000/weather-backend:latest
+      run: docker tag amara3000/weather_backend:${{ needs.build-test-scan.outputs.version }} amara3000/weather_backend:latest
 
     - name: Re-scan pulled image
       uses: aquasecurity/trivy-action@master
       with:
-        image-ref: amara3000/weather-backend:${{ needs.build-test-scan.outputs.version }}
+        image-ref: amara3000/weather_backend:${{ needs.build-test-scan.outputs.version }}
         format: table
         severity: HIGH,CRITICAL
 
     - name: Block on vulnerabilities
       run: |
-        trivy image --severity HIGH,CRITICAL --exit-code 1 amara3000/weather-backend:${{ needs.build-test-scan.outputs.version }}
+        trivy image --severity HIGH,CRITICAL --exit-code 1 amara3000/weather_backend:${{ needs.build-test-scan.outputs.version }}
 
     - name: Push image to Docker Hub
       run: |
-        docker push amara3000/weather-backend:${{ needs.build-test-scan.outputs.version }}
-        docker push amara3000/weather-backend:latest
+        docker push amara3000/weather_backend:${{ needs.build-test-scan.outputs.version }}
+        docker push amara3000/weather_backend:latest
